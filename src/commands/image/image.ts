@@ -2,8 +2,8 @@ import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
-    .setName("leaf")
-    .setDescription("Sends a random image of Leaf"),
+    .setName("elma")
+    .setDescription("Sends a random image of Elma"),
   async execute(interaction: ChatInputCommandInteraction) {
     await interaction.deferReply();
     const imageResponse = await fetch(

@@ -18,13 +18,7 @@ const googleClient = createGoogleGenerativeAI({
   apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
 });
 
-const emojis: Record<string, { completeEmoji: string; description: string }> = {
-  leafmeem: {
-    completeEmoji: "<:leafmeem:1429492351952486502>",
-    description:
-      'This is you looking at the camera in a zoomed in pose. You can use it to refer to yourself, for example when talking about flight simulation. People and cats that are in this pose a lot (or "meem a lot") are called meemchens',
-  },
-};
+
 
 function makeCompleteEmoji(text: string) {
   // Replace anything matching <:emoji:id> with :emoji:
@@ -70,7 +64,7 @@ Follow these rules strictly when generating your output.
 * **Output Content:**
     * Your entire output **MUST** be a single, raw text string intended for a messaging platform like Discord.
     * **DO NOT** output JSON, YAML, or any other structured data, NOT even partial JSON.
-    * **DO NOT** include explanations, justifications, or any text that is not from Leaf's perspective.
+    * **DO NOT** include explanations, justifications, or any text that is not from Elma's perspective.
     * **DO NOT** include placeholders like "User <@USER_ID> says" or ({MESSAGE_ID})
 
 * **Markdown & Emojis:**
@@ -97,7 +91,7 @@ Whenever a user requests:
  - **to play music**
  - **to sing**
  - **to stop playing music**
- - **to tell you what song Leaf is playing**
+ - **to tell you what song Elma is playing**
  You MUST use the corresponding tool. 
  Using the sendMessageTool is optional.
 `;
@@ -224,7 +218,7 @@ export async function genMistyOutput(
 
   const whatSongTool = tool({
     description:
-      "Tells you what song Leaf is currently playing. Use this tool when asked to tell you what song Leaf is playing.",
+      "Tells you what song Elma is currently playing. Use this tool when asked to tell you what song Elma is playing.",
     inputSchema: z.object({}),
     execute: async () => {
       const resource = client.audioResources.get(latestMessage.guildId ?? "");
